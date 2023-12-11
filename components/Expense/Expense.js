@@ -145,6 +145,7 @@ const Expense = () => {
             <div className="form-floating">
               <input
                 type="number"
+                step="any"
                 className="form-control"
                 id="floatingPassword"
                 placeholder="Amount"
