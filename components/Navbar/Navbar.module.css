@@ -1,0 +1,29 @@
+.mainnav {
+  text-align: center;
+}
+.mainnav ul {
+  list-style-type: none;
+  list-style: none;
+  /* display: flex; */
+}
+
+.mainnav ul li {
+  display: inline-block;
+  margin-right: 1rem;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+
+.mainnav ul li:hover {
+  color: #0d6efd;
+  font-size: 1.1rem;
+}
+
+.activeItem {
+  color: #0d6efd !important;
+  font-size: 1.1rem !important;
+}
+
+.item {
+  color: black;
+}

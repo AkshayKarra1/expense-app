@@ -1,0 +1,36 @@
+CREATE SCHEMA budget;
+
+use budget;
+
+CREATE TABLE budget_users (
+  user_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  email VARCHAR(400) NOT NULL,
+  password VARCHAR(20) NOT NULL,
+  token VARCHAR(12) NOT NULL,
+  token_expire timestamp,
+  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (user_id)  
+);
+
+CREATE TABLE budget_categories (
+  category_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  category VARCHAR(45) NOT NULL,  
+  user_id SMALLINT UNSIGNED,
+  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (category_id)  
+);
+
+
+CREATE TABLE user_expenses (
+  expense_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id SMALLINT UNSIGNED ,
+  category_id SMALLINT UNSIGNED,  
+  amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  description varchar(200),
+  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,    
+  PRIMARY KEY  (expense_id),
+  CONSTRAINT `fk_expense_category_id` FOREIGN KEY (category_id) REFERENCES budget_categories(category_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_expense_user_id` FOREIGN KEY (user_id) REFERENCES budget_users(user_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
